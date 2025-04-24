@@ -1,0 +1,184 @@
+<!Tieng trung html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Học từ HSK1 cùng Trung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding: 20px;
+      margin: 0;
+      background: url("K33.jpg");
+      background-size: cover;  
+	background-repeat: no-repeat;
+  background-position: center;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: inline-block;
+      width: 90%;
+      max-width: 500px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .scoreboard {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    .question {
+      font-size: 28px;
+      margin: 20px 0;
+      color: #e67e22;
+    }
+    .options button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      width: 80%;
+      max-width: 300px;
+    }
+    .options button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    #retryBtn {
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Học từ vựng HSK1 – Chọn đúng nghĩa!</h1>
+  <div class="scoreboard">
+    🔢 Điểm hiện tại: <span id="score">0</span> | 🏆 Kỷ lục: <span id="highscore">0</span>
+  </div>
+  <div class="card">
+    <div class="question" id="word">...</div>
+    <div class="options">
+      <button onclick="checkAnswer(this)"></button>
+      <button onclick="checkAnswer(this)"></button>
+      <button onclick="checkAnswer(this)"></button>
+    </div>
+    <div id="result"></div>
+    <button id="retryBtn" onclick="retryWrongWords()">Luyện lại từ sai</button>
+  </div>
+
+  <script>
+    const words = [
+      { zh: "你好", vi: "Xin chào" }, { zh: "谢谢", vi: "Cảm ơn" }, { zh: "再见", vi: "Tạm biệt" },
+      { zh: "请", vi: "Làm ơn" }, { zh: "是", vi: "Là" }, { zh: "不", vi: "Không" },
+      { zh: "有", vi: "Có" }, { zh: "我", vi: "Tôi" }, { zh: "你", vi: "Bạn" },
+      { zh: "他", vi: "Anh ấy" }, { zh: "她", vi: "Cô ấy" }, { zh: "我们", vi: "Chúng tôi" },
+      { zh: "他们", vi: "Họ" }, { zh: "这", vi: "Cái này" }, { zh: "那", vi: "Cái kia" },
+      { zh: "哪", vi: "Cái nào" }, { zh: "谁", vi: "Ai" }, { zh: "什么", vi: "Cái gì" },
+      { zh: "多少", vi: "Bao nhiêu" }, { zh: "几", vi: "Mấy" }, { zh: "怎么", vi: "Như thế nào" },
+      { zh: "怎么样", vi: "Thế nào" }, { zh: "喜欢", vi: "Thích" }, { zh: "知道", vi: "Biết" },
+      { zh: "看", vi: "Nhìn" }, { zh: "听", vi: "Nghe" }, { zh: "说", vi: "Nói" },
+      { zh: "读", vi: "Đọc" }, { zh: "写", vi: "Viết" }, { zh: "吃", vi: "Ăn" },
+      { zh: "喝", vi: "Uống" }, { zh: "做", vi: "Làm" }, { zh: "买", vi: "Mua" },
+      { zh: "开", vi: "Mở" }, { zh: "坐", vi: "Ngồi" }, { zh: "住", vi: "Sống ở" },
+      { zh: "学", vi: "Học" }, { zh: "工作", vi: "Công việc" }, { zh: "学习", vi: "Học tập" },
+      { zh: "学校", vi: "Trường học" }, { zh: "老师", vi: "Giáo viên" }, { zh: "学生", vi: "Học sinh" },
+      { zh: "朋友", vi: "Bạn bè" }, { zh: "家", vi: "Gia đình" }, { zh: "爸爸", vi: "Bố" },
+      { zh: "妈妈", vi: "Mẹ" }, { zh: "儿子", vi: "Con trai" }, { zh: "女儿", vi: "Con gái" },
+      { zh: "医生", vi: "Bác sĩ" }, { zh: "医院", vi: "Bệnh viện" }, { zh: "商店", vi: "Cửa hàng" }
+      // Có thể thêm tiếp nếu bạn muốn đủ 150 từ
+    ];
+
+
+    let currentWord;
+    let score = 0;
+    let highscore = localStorage.getItem("hsk_highscore") || 0;
+    let wrongWords = [];
+    let isRetrying = false;
+    let retryQueue = [];
+
+    document.getElementById("highscore").innerText = highscore;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function nextQuestion() {
+      document.getElementById("result").innerText = "";
+      document.getElementById("retryBtn").style.display = wrongWords.length > 0 ? "block" : "none";
+
+      let wordList = isRetrying ? retryQueue : words;
+      currentWord = wordList[Math.floor(Math.random() * wordList.length)];
+
+      const answers = [currentWord.vi];
+      while (answers.length < 3) {
+        const rand = words[Math.floor(Math.random() * words.length)].vi;
+        if (!answers.includes(rand)) answers.push(rand);
+      }
+      shuffle(answers);
+
+      document.getElementById("word").innerText = currentWord.zh;
+      const buttons = document.querySelectorAll(".options button");
+      buttons.forEach((btn, i) => {
+        btn.innerText = answers[i];
+        btn.disabled = false;
+        btn.style.backgroundColor = "#3498db";
+      });
+
+      // Phát âm
+      const utterance = new SpeechSynthesisUtterance(currentWord.zh);
+      utterance.lang = 'zh-CN';
+      speechSynthesis.speak(utterance);
+    }
+
+    function checkAnswer(button) {
+      const result = document.getElementById("result");
+      const buttons = document.querySelectorAll(".options button");
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (button.innerText === currentWord.vi) {
+        result.innerText = "🎉 Anh Trung Khen Bạn!";
+        result.style.color = "green";
+        score++;
+        document.getElementById("score").innerText = score;
+        if (score > highscore) {
+          highscore = score;
+          localStorage.setItem("hsk_highscore", highscore);
+          document.getElementById("highscore").innerText = highscore;
+        }
+      } else {
+        result.innerText = `❌ Sai rồi, Đần ác!\nĐáp án đúng: ${currentWord.vi}`;
+        result.style.color = "red";
+        if (!wrongWords.includes(currentWord)) {
+          wrongWords.push(currentWord);
+        }
+        score = 0;
+        document.getElementById("score").innerText = score;
+      }
+
+      setTimeout(nextQuestion, 2000);
+    }
+
+    function retryWrongWords() {
+      isRetrying = true;
+      retryQueue = [...wrongWords];
+      wrongWords = [];
+      nextQuestion();
+    }
+
+    nextQuestion();
+  </script>
+</body>
+</html>
