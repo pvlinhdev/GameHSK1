@@ -1,8 +1,8 @@
-<!Tieng trung html>
+<TRUNGDEPTRAI html>
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>Học từ HSK1 cùng Trung</title>
+  <title>Học tiếng Trung cùng Trung Mập</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -11,7 +11,7 @@
       background-color: #f0f8ff;
       padding: 20px;
       margin: 0;
-      background: url("K33.jpg");
+      background: url("K33.png");
       background-size: cover;  
 	background-repeat: no-repeat;
   background-position: center;
@@ -80,28 +80,106 @@
   </div>
 
   <script>
-    const words = [
-      { zh: "你好", vi: "Xin chào" }, { zh: "谢谢", vi: "Cảm ơn" }, { zh: "再见", vi: "Tạm biệt" },
-      { zh: "请", vi: "Làm ơn" }, { zh: "是", vi: "Là" }, { zh: "不", vi: "Không" },
-      { zh: "有", vi: "Có" }, { zh: "我", vi: "Tôi" }, { zh: "你", vi: "Bạn" },
-      { zh: "他", vi: "Anh ấy" }, { zh: "她", vi: "Cô ấy" }, { zh: "我们", vi: "Chúng tôi" },
-      { zh: "他们", vi: "Họ" }, { zh: "这", vi: "Cái này" }, { zh: "那", vi: "Cái kia" },
-      { zh: "哪", vi: "Cái nào" }, { zh: "谁", vi: "Ai" }, { zh: "什么", vi: "Cái gì" },
-      { zh: "多少", vi: "Bao nhiêu" }, { zh: "几", vi: "Mấy" }, { zh: "怎么", vi: "Như thế nào" },
-      { zh: "怎么样", vi: "Thế nào" }, { zh: "喜欢", vi: "Thích" }, { zh: "知道", vi: "Biết" },
-      { zh: "看", vi: "Nhìn" }, { zh: "听", vi: "Nghe" }, { zh: "说", vi: "Nói" },
-      { zh: "读", vi: "Đọc" }, { zh: "写", vi: "Viết" }, { zh: "吃", vi: "Ăn" },
-      { zh: "喝", vi: "Uống" }, { zh: "做", vi: "Làm" }, { zh: "买", vi: "Mua" },
-      { zh: "开", vi: "Mở" }, { zh: "坐", vi: "Ngồi" }, { zh: "住", vi: "Sống ở" },
-      { zh: "学", vi: "Học" }, { zh: "工作", vi: "Công việc" }, { zh: "学习", vi: "Học tập" },
-      { zh: "学校", vi: "Trường học" }, { zh: "老师", vi: "Giáo viên" }, { zh: "学生", vi: "Học sinh" },
-      { zh: "朋友", vi: "Bạn bè" }, { zh: "家", vi: "Gia đình" }, { zh: "爸爸", vi: "Bố" },
-      { zh: "妈妈", vi: "Mẹ" }, { zh: "儿子", vi: "Con trai" }, { zh: "女儿", vi: "Con gái" },
-      { zh: "医生", vi: "Bác sĩ" }, { zh: "医院", vi: "Bệnh viện" }, { zh: "商店", vi: "Cửa hàng" }
-      // Có thể thêm tiếp nếu bạn muốn đủ 150 từ
-    ];
-
-
+   const words = [
+  { zh: "爱", vi: "Yêu" },
+  { zh: "八", vi: "Tám" },
+  { zh: "爸爸", vi: "Bố" },
+  { zh: "杯子", vi: "Cái cốc" },
+  { zh: "北京", vi: "Bắc Kinh" },
+  { zh: "本", vi: "Quyển (lượng từ)" },
+  { zh: "不", vi: "Không" },
+  { zh: "菜", vi: "Món ăn, rau" },
+  { zh: "茶", vi: "Trà" },
+  { zh: "吃", vi: "Ăn" },
+  { zh: "出", vi: "Ra" },
+  { zh: "出租车", vi: "Xe taxi" },
+  { zh: "打电话", vi: "Gọi điện thoại" },
+  { zh: "大", vi: "To, lớn" },
+  { zh: "的", vi: "Của (trợ từ)" },
+  { zh: "点", vi: "Giờ" },
+  { zh: "电脑", vi: "Máy tính" },
+  { zh: "电视", vi: "Tivi" },
+  { zh: "电影", vi: "Phim" },
+  { zh: "东西", vi: "Đồ vật" },
+  { zh: "都", vi: "Đều" },
+  { zh: "读", vi: "Đọc" },
+  { zh: "对不起", vi: "Xin lỗi" },
+  { zh: "多", vi: "Nhiều" },
+  { zh: "多少", vi: "Bao nhiêu" },
+  { zh: "儿子", vi: "Con trai" },
+  { zh: "二", vi: "Hai" },
+  { zh: "饭店", vi: "Nhà hàng, khách sạn" },
+  { zh: "飞机", vi: "Máy bay" },
+  { zh: "分钟", vi: "Phút" },
+  { zh: "高兴", vi: "Vui mừng" },
+  { zh: "个", vi: "Cái (lượng từ)" },
+  { zh: "工作", vi: "Công việc" },
+  { zh: "狗", vi: "Chó" },
+  { zh: "汉语", vi: "Tiếng Trung" },
+  { zh: "好", vi: "Tốt" },
+  { zh: "号", vi: "Số, ngày" },
+  { zh: "喝", vi: "Uống" },
+  { zh: "和", vi: "Và" },
+  { zh: "很", vi: "Rất" },
+  { zh: "后面", vi: "Phía sau" },
+  { zh: "回", vi: "Trở về" },
+  { zh: "会", vi: "Biết, có thể" },
+  { zh: "几", vi: "Mấy" },
+  { zh: "家", vi: "Nhà" },
+  { zh: "叫", vi: "Gọi là" },
+  { zh: "今天", vi: "Hôm nay" },
+  { zh: "九", vi: "Chín" },
+  { zh: "开", vi: "Mở" },
+  { zh: "看", vi: "Nhìn, xem" },
+  { zh: "看见", vi: "Nhìn thấy" },
+  { zh: "块", vi: "Đồng (tiền)" },
+  { zh: "来", vi: "Đến" },
+  { zh: "老师", vi: "Giáo viên" },
+  { zh: "了", vi: "Đã (trợ từ)" },
+  { zh: "冷", vi: "Lạnh" },
+  { zh: "里", vi: "Trong" },
+  { zh: "六", vi: "Sáu" },
+  { zh: "妈妈", vi: "Mẹ" },
+  { zh: "吗", vi: "Không? (trợ từ nghi vấn)" },
+  { zh: "买", vi: "Mua" },
+  { zh: "猫", vi: "Mèo" },
+  { zh: "没关系", vi: "Không sao" },
+  { zh: "没有", vi: "Không có" },
+  { zh: "米饭", vi: "Cơm" },
+  { zh: "明天", vi: "Ngày mai" },
+  { zh: "名字", vi: "Tên" },
+  { zh: "哪", vi: "Nào" },
+  { zh: "哪儿", vi: "Ở đâu" },
+  { zh: "那", vi: "Đó, kia" },
+  { zh: "那儿", vi: "Chỗ đó" },
+  { zh: "呢", vi: "Thế còn (trợ từ)" },
+  { zh: "能", vi: "Có thể" },
+  { zh: "你", vi: "Bạn" },
+  { zh: "年", vi: "Năm" },
+  { zh: "女儿", vi: "Con gái" },
+  { zh: "朋友", vi: "Bạn bè" },
+  { zh: "漂亮", vi: "Đẹp" },
+  { zh: "苹果", vi: "Táo" },
+  { zh: "七", vi: "Bảy" },
+  { zh: "钱", vi: "Tiền" },
+  { zh: "前面", vi: "Phía trước" },
+  { zh: "请", vi: "Mời, xin" },
+  { zh: "去", vi: "Đi" },
+  { zh: "热", vi: "Nóng" },
+  { zh: "人", vi: "Người" },
+  { zh: "认识", vi: "Biết (ai đó)" },
+  { zh: "三", vi: "Ba" },
+  { zh: "商店", vi: "Cửa hàng" },
+  { zh: "上", vi: "Trên" },
+  { zh: "上午", vi: "Buổi sáng" },
+  { zh: "少", vi: "Ít" },
+  { zh: "谁", vi: "Ai" },
+  { zh: "什么", vi: "Cái gì" },
+  { zh: "十", vi: "Mười" },
+  { zh: "时候", vi: "Thời gian" },
+  { zh: "是", vi: "Là" }
+ ];
+ 
     let currentWord;
     let score = 0;
     let highscore = localStorage.getItem("hsk_highscore") || 0;
@@ -149,7 +227,7 @@
       buttons.forEach(btn => btn.disabled = true);
 
       if (button.innerText === currentWord.vi) {
-        result.innerText = "🎉 Anh Trung Khen Bạn!";
+        result.innerText = "🎉 Đúng rồi!\nAnh Trung Khen Bạn!";
         result.style.color = "green";
         score++;
         document.getElementById("score").innerText = score;
